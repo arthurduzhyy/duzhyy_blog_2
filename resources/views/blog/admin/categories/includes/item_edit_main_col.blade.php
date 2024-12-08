@@ -13,7 +13,8 @@
                     <div class="tab-pane active" id="maindata" role="tabpanel">
                         <div class="form-group">
                             <label for="title">Заголовок</label>
-                            <input type="text" name="title" value="{{ $item->title }}" id="title" class="form-control" minlength="3" required>
+                            <input type="text" name="title" value="{{ $item->title }}" id="title" class="form-control"
+                                   minlength="3" required>
                         </div>
                         <div class="form-group">
                             <label for="slug">Псевдонім</label>
@@ -21,18 +22,20 @@
                         </div>
                         <div class="form-group">
                             <label for="parent_id">Батківська категорія</label>
-                            <select name="parent_id" placeholder="Оберіть категорію" id="parent_id" class="form-control" required>
+                            <select name="parent_id" placeholder="Оберіть категорію" id="parent_id" class="form-control"
+                                    required>
                                 @foreach ($categoryList as $categoryOption)
                                     <option value="{{ $categoryOption->id }}"
                                             @if($categoryOption->id == $item->parent_id) selected @endif>
-                                        {{ $categoryOption->id }}. {{ $categoryOption->title }}
+                                        {{ $categoryOption->id_title }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="description">Опис</label>
-                            <textarea name="description" id="description" rows="3" class="form-control">{{ old('description', $item->description) }}</textarea>
+                            <textarea name="description" id="description" rows="3"
+                                      class="form-control">{{ old('description', $item->description) }}</textarea>
                         </div>
                     </div>
                 </div>
