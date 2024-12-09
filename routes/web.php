@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DiggingDeeperController;
 use App\Http\Controllers\RestTestController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,13 @@ Route::middleware([
 
 Route::resource('rest', RestTestController::class)->names('restTest');
 
-Route::group([ 'namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function () {
     Route::resource('posts', PostController::class)->names('blog.posts');
+});
+
+Route::group(['prefix' => 'digging_deeper'], function () {
+    Route::get('collections', [DiggingDeeperController::class, 'collections'])
+        ->name('digging_deeper.collections');
 });
 
 //Адмінка
@@ -30,7 +36,7 @@ $groupData = [
 ];
 Route::group($groupData, function () {
     //BlogCategory
-    $methods = ['index','edit','store','update','create',];
+    $methods = ['index', 'edit', 'store', 'update', 'create',];
     Route::resource('categories', CategoryController::class)
         ->only($methods)
         ->names('blog.admin.categories');
